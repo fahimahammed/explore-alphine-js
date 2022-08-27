@@ -21,5 +21,27 @@
             <p x-show="open" x-on:click.outside="open = false">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore quae unde omnis error molestiae ipsam!</p>
         </div>
     </div>
+
+    <div
+    x-data="{
+        search: '',
+ 
+        items: ['Dhaka', 'Khulna', 'Rangpur', 'Syllet'],
+ 
+        get filteredItems() {
+            return this.items.filter(
+                i => i.startsWith(this.search)
+            )
+        }
+    }"
+>
+    <input x-model="search" placeholder="Search...">
+ 
+    <ul>
+        <template x-for="item in filteredItems" :key="item">
+            <li x-text="item"></li>
+        </template>
+    </ul>
+</div>
 </body>
 </html>
